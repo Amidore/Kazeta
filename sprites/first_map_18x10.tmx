@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="hexagonal" renderorder="right-down" width="10" height="18" tilewidth="60" tileheight="52" hexsidelength="26" staggeraxis="y" staggerindex="odd" nextobjectid="1">
+ <tileset firstgid="1" name="hexa" tilewidth="60" tileheight="80" tilecount="12" columns="4">
+  <image source="Tileset_Hexagonal_PointyTop_60x52_60x80.png" width="240" height="240"/>
+ </tileset>
+ <layer name="Calque de Tile 1" width="10" height="18">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBzFo3iYYAABZwC1
+  </data>
+ </layer>
+</map>
