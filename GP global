@@ -1,0 +1,18 @@
+3v3
+phase de pick et ban 2b 2p 1b 1p
+phase de stuff
+systeme d'auto destruction de la map a partir d'un certain temps
+10 sorts par persos
+7/8 items minimums
+3 sorts communs a choisir parmi 10
+ressource deplacement et ressource action
+ressource deplacement depend du perso mais relativement proche
+3 ressources action en fonction de la classe:
+- rage, mecanique de stack pour debloquer des effets secondaires
+- energie, mecanique de ressources qui se regenere a 100% chaque tour mais limite
+- mana, gros pull de ressources, regenere lentement, mecanique de gestion
+4 elements: eau-->feu-->air-->terre-->eau
+chaque element a une augmentation de degats sur un autre
+chaque element a sa specialite selon le modele suivant:
+eau: soin // feu:degats distance // terre:degats contact // air:mobilite
+systeme de resistance distance et de resistance contact selon une fonction logarythmique
