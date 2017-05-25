@@ -1,8 +1,11 @@
 """
-module map de jeu
+module map du jeu 
 """
+import pygame
+import drawing
 FREE = 1
 BlOCKED = 0
+green = pygame.Color(34, 177, 76)
 
 class Hexagone:
     """
@@ -10,7 +13,7 @@ class Hexagone:
     """
     def __init__(self, coordinates = (0, 0), state = FREE):
         """
-        state correspond à l'état libre ou occupé de la case hexagonale
+        state correspond a l'etat libre ou occupe de la case hexagonale
         """
         self.state = state
         self.coordinates = coordinates
@@ -32,10 +35,10 @@ class Map:
     """
     classe pour la map hexagonale 
     """
-    def __init__(self, size=30):
+    def __init__(self, fond, size=30):
         """
         size est la taille, la map est aussi large que longue
-        area est un tableau à double entrées remplie d'hexagones 
+        area est un tableau a double entrees remplie d'hexagones 
         """
         self.size = size
         self.area = []
@@ -44,11 +47,25 @@ class Map:
             for j in range(size):
                 self.area[i].append(Hexagone((i, j)))
 
+        background = pygame.image.load(fond).convert()
+        hexA = pygame.image.load('./sprites/hexA.png').convert()
+        hexA.set_colorkey(green)
+        hexB = pygame.image.load('./sprites/hexB.png').convert()
+        hexB.set_colorkey(green)
+        drawing.draw_bord(10, hexA, hexB, background)
+        self.map_surface = background
+
     def get(self, coordinates):
         """
         return the hex of the map at the (x, y) coordinates
         """
         return self.area[coordinates[0]][coordinates[1]]
+
+    def draw_map(self, display_screen):
+        """
+        draw the map surface
+        """
+        display_screen.blit(self.map_surface, (0, 0))
 
     def __str__(self):
         s = ""
