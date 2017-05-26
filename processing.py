@@ -17,6 +17,16 @@ def select(event):
 def deselect(event):
     return event.type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pressed()[2]
 
+def push_next_turn(event):
+    if event.type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pressed()[0]:
+        pixel_pos = pygame.mouse.get_pos()
+        return (pixel_pos[0] > 560 and pixel_pos[1] > 620)
+
+def select_spell(event):
+     if event.type == pygame.MOUSEBUTTONDOWN and pygame.mouse.get_pressed()[0]:
+        pixel_pos = pygame.mouse.get_pos()
+        return (pixel_pos[1] > 620)
+
 def get_hex(pos):
     """
     return the coordinates of the hexagone of the pixel at the position pos
@@ -65,5 +75,12 @@ def get_pixel_hex(coordinates):
         x += r
     return (x, y)
     
-        
+
+def get_nb_spell(pos):
+    if  625 > pos[1] or pos[1] > 654:
+        return None
+    else:
+        for i in range(13):
+            if pos[0] >= (4 + (32 * i)) and pos[0] <=  ((4 + (32 * i)) + 32):
+                return i
 

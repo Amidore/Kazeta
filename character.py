@@ -7,15 +7,18 @@ from processing import get_pixel_hex
 import pygame
 
 class Character:
-    def __init__(self, name, sprite, place,
+    def __init__(self, name, sprite, spell_bar, place,
             hp, resource, mp, elemental_points, resists,
             spells, states = []):
         self.name = name
 
         self.sprite = sprite
         self.place = place
+        place.add_content(self)
         coordinates = get_pixel_hex(place.coordinates)
         self.sprite.rect.move_ip(coordinates[0], coordinates[1])
+
+        self.spell_bar = spell_bar
 
         self.hp = [hp, hp]
         self.resource = resource
@@ -80,7 +83,7 @@ class Character:
             self.place.clear_content()
             self.place = destination
             coordinatesPixel = get_pixel_hex(destination.coordinates)
-            self.sprite.rect.move_ip(coordinatesPixel[0], coordinatesPixel[1])
+            self.sprite.rect = (coordinatesPixel[0], coordinatesPixel[1])
 
         print("{} moves to {}.".format(self, destination))
 
@@ -93,7 +96,7 @@ class Character:
             self.add_mp()
 
     def cast(self, spell, target):
-        spell.casted(caster, target)
+        spell.casted(self, target)
 
 
     def __str__(self):

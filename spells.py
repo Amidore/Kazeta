@@ -5,25 +5,27 @@ from character import *
 from map1 import *
 
 class Spell():
-    def __init__(self, name, resource_cost, pattern, distance, effects):
+    def __init__(self, name, icon,
+            resource_cost, pattern, distance, effects):
         self.effects = effects
         self.resource_cost = resource_cost
         self.distance = distance
         self. pattern = pattern
         self.name = name
+        self.icon = icon
 
     def prerequisite(self, caster, end):
         start = caster.place
-        if start.dist(end) > distance:
+        if start.dist(end) > self.distance:
             print("out of range!")
             return False
-        if resource_cost > caster.resource.points[0]:
+        if self.resource_cost > caster.resource.points[0]:
             print("Not enough resource!")
             return False
         return True
 
     def casted(self, caster, end):
-        if self.prerequisite(start, end):
+        if self.prerequisite(caster, end):
             caster.resource.spend(self.resource_cost)
             target = end.get_content()
             if target is not None:

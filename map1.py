@@ -3,7 +3,7 @@ module map du jeu
 """
 import pygame
 import drawing
-from math import floor
+from math import floor, ceil
 FREE = 1
 BlOCKED = 0
 green = pygame.Color(34, 177, 76)
@@ -57,6 +57,18 @@ class Hexagone:
         a1 = self.coordinates[1]
         b1 = other.coordinates[1]
 
+        if a0 == b0:
+            return abs(a1 - b1)
+        elif a1 == b1:
+            return abs(a0 - b0)
+        else:
+            dx = abs(a0 - b0)
+            dy = abs(a1 - b1)
+            if a1 > b1:
+                return dx + dy - int(ceil(dx / 2.0))
+            else: 
+                return dx + dy - int(floor(dx / 2.0))
+        """
         x0 = a0-floor(b0/2)
         y0 = b0
         x1 = a1-floor(b1/2)
@@ -64,6 +76,7 @@ class Hexagone:
         dx = x1 - x0
         dy = y1 - y0
         return max(abs(dx), abs(dy), abs(dx+dy))
+        """
 
     def __str__(self):
         s = "B"
