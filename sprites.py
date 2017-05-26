@@ -15,4 +15,9 @@ class Selection(pygame.sprite.Sprite):
         print(pos)
         self.rect.move_ip(pos[0], pos[1])
 
-
+class Perso(pygame.sprite.Sprite):
+    def __init__(self, sprite):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(sprite).convert()
+        self.image.set_colorkey(pygame.Color(192, 192, 192))
+        self.rect = self.image.get_rect()

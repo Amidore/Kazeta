@@ -40,11 +40,11 @@ class Game:
         self.plan.draw_map(self.display_screen)
         self.all_sprites.draw(self.display_screen)
 
-    def load_data(self, all_sprites):
+    def load_data(self, sprites):
         """
         load sprites 
         """
-        self.all_sprites = all_sprites
+        self.all_sprites.add(sprites)
 
     def processing_events(self):
         """

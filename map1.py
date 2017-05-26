@@ -3,6 +3,7 @@ module map du jeu
 """
 import pygame
 import drawing
+from math import floor
 FREE = 1
 BlOCKED = 0
 green = pygame.Color(34, 177, 76)
@@ -11,18 +12,58 @@ class Hexagone:
     """
     classe des cases hexagonales
     """
-    def __init__(self, coordinates = (0, 0), state = FREE):
+    def __init__(self, coordinates = (0, 0), content = [], state = FREE):
         """
         state correspond a l'etat libre ou occupe de la case hexagonale
         """
         self.state = state
         self.coordinates = coordinates
+        self.content = content
     
+    def add_content(self, content):
+        """
+        add player to the hex
+        """
+        if self.state:
+            self.content = content
+            self.switch()
+
+    def get_content(self):
+        """
+        get the player on the hex
+        """
+        return self.content
+
+    def clear_content(self):
+        """
+        remove the player from the hex
+        """
+        self.content = None 
+        if self.state:
+            self.switch()
+
     def switch(self):
         """
         switch the state of the hex
         """
         self.state = not self.state
+
+    def dist(self, other):
+        """
+        return the distance between two hex
+        """
+        a0 = self.coordinates[0]
+        b0 = other.coordinates[0]
+        a1 = self.coordinates[1]
+        b1 = other.coordinates[1]
+
+        x0 = a0-floor(b0/2)
+        y0 = b0
+        x1 = a1-floor(b1/2)
+        y1 = b1
+        dx = x1 - x0
+        dy = y1 - y0
+        return max(abs(dx), abs(dy), abs(dx+dy))
 
     def __str__(self):
         s = "B"
