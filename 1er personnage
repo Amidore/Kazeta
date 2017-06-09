@@ -1,1 +1,57 @@
 
+Personnage BB
+
+	Sort 1 : Double jeu
+
+•	Walter White : Le personnage profite d’une augmentation de soin/buff reçu. Les sorts lancés sur allié sont augmentés. Durant X tour après le lancement du sort, BB voit ses dégâts subis diminué. Si un allié meurt en état WW, place un marqueur d’apitoiement pour 1 tour (non cumulable).
+•	Heisenberg : Dégâts subis augmentés. Dégâts infligés augmentés. Chaque tour H/WW gagne un marqueur de folie. (cumulable X fois). Chaque marqueur augmente les dégâts subit et reçu. Si un allié meurt en état H, place un marqueur de folie furieuse pour 1 tour (non cumulable).
+
+	Sort 2 : 2 fois plus 
+
+•	En état WW : permet à BB de se téléporter au corps à corps d’un allié. Applique un heal autour de la case ciblée.
+•	En état H : se téléporte au cac d’un ennemi. Place un marqueur de folie.
+
+	Sort 3 : Père    (opposition du comportement avec Jessy et son fils)
+
+•	En état WW : Applique des protections sur la cible.
+•	En état H : Boost la cible.
+
+	Sort 4 : Dechainement
+
+•	Inflige de conséquents dégâts à la cible.
+•	Si  BB a un marqueur de folie furieuse les dégâts sont appliqués à tous les ennemis. indifféremment de leur distance. Les dégâts collatéraux sont exactement les mêmes (resi non incluses).
+
+	Sort 5 : Production (produit pharmaceutique vs meth)
+
+•	En état WW : applique un soin sur la durée qui se déclenche au tour de la cible.
+•	En état H : applique un dot.
+
+	Sort 6 : Gout du risque
+
+•	Se lance uniquement en etat H.
+•	Annule toutes les protections sur BB.
+•	Reduit ses HP actuels de X%.
+•	Augmente enormements ses degats.
+
+	Sort 7 : Sacrifice de soi (au début il se saigne au boulot puis il sacrifie sa morale)
+
+•	En état WW : augmente les degats subis par BB mais reduit ceux subis par ses alliés.
+•	En état H : réduits les hp de lui-même et ses alliés pour augmenter leurs ressources.
+
+	Sort 8 : Pour toi
+
+•	Intercepte X% des dégâts subis par la cible.
+•	Se lance uniquement en état WW.
+
+	Sort 9 : Professeur (taf puis mentor de jessy)
+
+•	En état WW : Applique un buff de stats défensives en zone aux alliés.
+•	En état H : Applique un buff de stats offensives monocible. Le buff est important au début puis réduit sur la durée.
+
+
+
+	Sort 10 : Famille
+
+•	En état WW : téléporte à son cac tous ses alliés. S’il a un marqueur d’apitoiement, permets au personnage tué précédemment de revenir jouer un dernier tour (juste après BB).
+•	En état H : téléporte un allié au cac de WW et lui applique un boost de dégats.
+
