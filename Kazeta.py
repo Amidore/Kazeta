@@ -46,8 +46,8 @@ splash = spells.Damage(25)
 slight_heal = spells.Heal(30)
 hit = spells.Damage(15)
 cac = spells.Spell("strike of sword", icon_strike, 50, 1, 1, [hit])
-fireball = spells.Spell("Fireball", icon_fireball, 75, 5, 1, [splash])
-toh = spells.Spell("Touch of heal", icon_touch_of_heal, 55, 3, 1, [slight_heal])
+fireball = spells.Spell("Fireball", icon_fireball, 75, 1, 5, [splash])
+toh = spells.Spell("Touch of heal", icon_touch_of_heal, 55, 1, 3, [slight_heal])
 
 spell_5_WW = spells.Spell("Production", icon_fireball, 20, dot_anim, 4,
         [spells.Dot(3, 20)]) 
