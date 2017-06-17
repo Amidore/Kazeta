@@ -58,4 +58,22 @@ class Heal(Effect):
         self.value = value
 
     def resolve(self, caster, target):
-        target.take_Heal(self.value)
+        target.take_heal(self.value)
+
+class Dot(Effect):
+    def __init__(self, time, value):
+        Effect.__init__(self, "Dot")
+        self.time = time
+        self.value = value
+
+    def resolve(self, caster, target):
+        target.receive_state(Dot_state(target, self.time, self.value))
+
+class Hot(Effect):
+    def __init__(self, time, value):
+        Effect.__init__(self, "Hot")
+        self.time = time
+        self.value = value
+
+    def resolve(self, caster, target):
+        target.receive_state(Hot_state(target, self.time, self.value))

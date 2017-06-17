@@ -7,11 +7,12 @@ from processing import get_pixel_hex
 import pygame
 
 class Character:
-    def __init__(self, name, sprite, spell_bar, place,
+    def __init__(self, name, sprite, icon, spell_bar, place,
             hp, resource, mp, elemental_points, resists,
             spells, states = []):
         self.name = name
 
+        self.icon = icon
         self.sprite = sprite
         self.place = place
         place.add_content(self)
@@ -37,10 +38,10 @@ class Character:
         (watch out value need to be positiv)
         """
         self.hp[0] -= value
+        print("{} take {} of damage.".format(self, value))
         if self.hp[0] < 0:
             self.hp[0] = 0
 
-        print("{} take {} of damage.".format(self, value))
 
     def take_heal(self, value):
         """
@@ -71,7 +72,11 @@ class Character:
                 self.states.pop(i)
 
         print("{} is not anymore affected by the state {}.".format(
-            self, state.category))
+            self, state))
+
+    def manage_states(self):
+        for state in self.states:
+            state.manage()
 
     def move_to(self, destination):
         distance = self.place.dist(destination)
@@ -84,10 +89,13 @@ class Character:
             self.place = destination
             coordinatesPixel = get_pixel_hex(destination.coordinates)
             self.sprite.rect = (coordinatesPixel[0], coordinatesPixel[1])
+            print("{} moves to {}.".format(self, destination))
 
-        print("{} moves to {}.".format(self, destination))
+    def refill(self):
+        self.refill_mp()
+        self.resource.refill()
 
-    def refill_mp():
+    def refill_mp(self):
         self.mp[0] = self.mp[1]
 
     def add_mp(self, value):
@@ -98,13 +106,46 @@ class Character:
     def cast(self, spell, target):
         spell.casted(self, target)
 
+    def memo(self):
+        print(self.name)
+        print("Hit points: {} / {} .".format(self.hp[0], self.hp[1]))
+        print("{}: {} / {} .".format(self.resource.category,
+            self.resource.points[0], self.resource.points[1]))
+        print("Movement points: {} / {} .".format(self.mp[0], self.mp[1]))
+
 
     def __str__(self):
         return self.name
 
 class State:
-    def __init__(self, category):
+    def __init__(self, char, category):
         self.category = category
+
+class Dot_state(State):
+    def __init__(self, char, time, value):
+        self.char = char
+        self.category = "DOT"
+        self.time = time
+        self.value = value
+    
+    def manage(self):
+        self.time -= 1
+        self.char.take_damage(self.value)
+        if self.time == 0:
+            self.char.remove_state(self.category)
+
+class Hot_state(State):
+    def __init__(self, char, time, value):
+        self.char = char
+        self.category = "HOT"
+        self.time = time
+        self.value = value
+    
+    def manage(self):
+        self.time -= 1
+        self.char.take_heal(self.value)
+        if self.time == 0:
+            self.char.remove_state(self.category)
 
 class Resource:
     def __init__(self, category, points):

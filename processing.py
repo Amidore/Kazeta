@@ -31,16 +31,12 @@ def get_hex(pos):
     """
     return the coordinates of the hexagone of the pixel at the position pos
     """
-    print(pos)
     m = (2 * width_tile) / (3 * hight_tile)
     parity_line = (pos[1] // hight_tile) % 2
     # parity_raw = (pos[0] - ((1- parity_line) * width_tile / 2)) % width_tile 
     coordinates_section = [pos[1] // hight_tile, pos[0] // width_tile]
     coordinates = [coordinates_section[0], coordinates_section[1]]
-    print(coordinates_section)
     if not(parity_line):
-        print("pair")
-        print(pos[0] - ((coordinates_section[1] * width_tile) + (hight_tile / 2)))
         if pos[0] - (
                 (coordinates_section[1] * width_tile) + (
                     hight_tile / 2)) < 0:
@@ -52,7 +48,6 @@ def get_hex(pos):
             if pos[1] - (coordinates_section[0] * hight_tile) < ( 2 * hight_tile / 3 - (pos[0] - coordinates_section[1] * width_tile) * m):
                 coordinates[0] -= 1
     else:
-        print("impair")
         if pos[1] - (
                 coordinates_section[0] * hight_tile) < (hight_tile / 3 - (pos[0] - coordinates_section[1] * width_tile) * m):
                 coordinates[0] -= 1

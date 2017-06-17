@@ -11,32 +11,50 @@ import sprites
 pygame.init()
 
 clock = pygame.time.Clock()
-screen = pygame.display.set_mode((700, 660),pygame.RESIZABLE)
+screen = pygame.display.set_mode((800, 660),pygame.RESIZABLE)
 plan = Map('./sprites/map_resize.png')
 
 game = Game(clock, plan, screen)
 
 
 knight = sprites.Perso('./sprites/new_knight.png')
-knight2 = sprites.Perso('./sprites/new_mage.png')
-icon_strike = sprites.icon_spell('./sprites/icon_sword_strike.png')
+link_icon = sprites.icon_spell('./sprites/link_icon.png')
+mage = sprites.Perso('./sprites/new_mage.png')
+mage_icon = sprites.icon_spell('./sprites/mage_icon.png')
 
+
+icon_strike = sprites.icon_spell('./sprites/icon_sword_strike.png')
+icon_fireball = sprites.icon_spell('./sprites/icon_fireball.png')
+icon_touch_of_heal = sprites.icon_spell('./sprites/icon_touch_of_heal.png')
+
+splash = spells.Damage(25)
+slight_heal = spells.Heal(30)
 hit = spells.Damage(15)
 cac = spells.Spell("strike of sword", icon_strike, 50, 1, 1, [hit])
+fireball = spells.Spell("Fireball", icon_fireball, 75, 5, 1, [splash])
+toh = spells.Spell("Touch of heal", icon_touch_of_heal, 55, 3, 1, [slight_heal])
 
-spell_bar = sprites.Spell_bar('./sprites/ability_bar.png', [cac])
+spell_5_WW = spells.Spell("Production", icon_fireball, 20, 1, 4,
+        [spells.Dot(3, 20)]) 
+spell_5_H = spells.Spell("Production", icon_touch_of_heal, 20, 1, 4,
+        [spells.Hot(3, 20)])
 
-Hero1 = character.Character("Link", knight, spell_bar, game.plan.get((1, 1)),
+
+spell_bar1 = sprites.Spell_bar('./sprites/ability_bar.png', [cac, spell_5_WW, spell_5_H])
+spell_bar2 = sprites.Spell_bar('./sprites/ability_bar.png', [fireball, toh])
+
+Hero1 = character.Character("Link", knight, link_icon, spell_bar1, game.plan.get((1, 1)),
         100, character.Energy(100), 3,
-        None, None, [cac])
+        None, None, [cac,spell_5_WW, spell_5_H], [])
 
-Hero2 = character.Character("Zelda", knight2, spell_bar, game.plan.get((1, 2)),
-        100, character.Energy(100), 3,
-        None, None, [cac])
+Hero2 = character.Character("Zelda", mage, mage_icon, spell_bar2, game.plan.get((1, 5)),
+        80, character.Mana(150), 3,
+        None, None, [fireball, toh], [])
 
-game.current_char = Hero1
-print(type(game.all_sprites))
-game.load_data([knight, knight2, spell_bar])
+
+game.load_chars([Hero1, Hero2])
+game.load_data(sprites.Side_bar(game.list_char))
+game.load_data(sprites.Current_selection(0))
 
 game.run()
 
