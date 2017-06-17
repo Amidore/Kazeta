@@ -3,7 +3,8 @@ module for spells
 """
 from character import *
 from map1 import *
-
+from animation import *
+from processing import get_pixel_hex
 class Spell():
     def __init__(self, name, icon,
             resource_cost, pattern, distance, effects):
@@ -31,6 +32,8 @@ class Spell():
             if target is not None:
                 print("{} cast the spell {} on {}.".format(
                     caster, self, target))
+                if self.pattern != 1:
+                    self.pattern.animate_static(get_pixel_hex(end.coordinates))
                 for effect in self.effects:
                     effect.resolve(caster, target)
 

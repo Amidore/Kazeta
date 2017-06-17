@@ -76,3 +76,10 @@ class Text(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(centerx=background.get_width()/2,
                                         centery=background.get_height()/2)
 
+class Anim_sprite(pygame.sprite.Sprite):
+    def __init__(self, sprite):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(sprite).convert()
+        self.rect = self.image.get_rect()
+        self.image.set_colorkey(pygame.Color(192, 192, 192))
+        

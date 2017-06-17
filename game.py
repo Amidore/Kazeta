@@ -140,6 +140,7 @@ class Game:
             if type(self.selected[1]) == Spell_selection:
                 coordinates = processing.get_hex(pygame.mouse.get_pos())
                 self.current_char.cast(self.current_char.spells[self.selected[1].index], self.plan.get(coordinates))
+                self.process_deselect()
             elif  type(self.selected[1]) == Selection and self.plan.get(self.selected[1].coordinates) == self.current_char.place:
                 coordinates = processing.get_hex(pygame.mouse.get_pos())
                 self.current_char.move_to(self.plan.get(coordinates))
